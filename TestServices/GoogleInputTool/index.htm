@@ -8,9 +8,22 @@
 </head>
 <body>
     <script>
-        for (i=0; i < 5000; i++) {
-            let sourceText = "Hami";
-            requestTranslationJson(sourceText, 'ne-t-i0-und', i);
+
+        //Also see this link: https://bitbucket.org/purohit/jquery.intlkeyboard.js
+        //thai Character Mapping
+
+        let ne = 'ne-t-i0-und';
+        let hi = 'hi-t-i0-und';
+        let bn = 'bn-t-i0-und';
+        let ja = 'ja-t-ja-hira-i0-und';
+        let chSimplified = 'zh-t-i0-pinyin';
+        let da = 'da-t-i0-und'; //Invalid
+        let fr = 'fr-t-i0-und';
+        let bu = 'bg-t-i0-und'; //bulgarian
+
+        for (i=0; i < 5; i++) {
+            let sourceText = "china";
+            requestTranslationJson(sourceText, bu, i);
         }
 
         function requestTranslationJson(sourceText, targetLanguage, counter) {
