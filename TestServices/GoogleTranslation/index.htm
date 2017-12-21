@@ -8,12 +8,12 @@
 </head>
 <body>
     <script>
-        for (i=0; i <10000; i++) {
+        for (i=0; i <5; i++) {
             let sourceText = "Why the translated text is not accurate? As explained earlier, the machine-language technology is used to perform the translation. This translation software is evolving everyday and as a time goes by the translation is going to be pretty accurate - especially for commonly used phrase and sentences. At a moment, it is not perfect but our translation software is useful for those who needs help framing the sentence and get general idea on what the sentence or phrase is conveying the message.";
             requestTranslationJson(sourceText, 'en', 'ne', i);
         }
 
-        for (i=0; i < 10000; i++) {
+        for (i=0; i < 5; i++) {
             requestTranslationJson('किन अनुवाद गरिएको शब्द सही छैन? जस्तै वर्णन गरिसकेपछि अनुवाद प्रदर्शन गर्न मेशिन-भाषा प्रविधि प्रयोग गरिन्छ। यो अनुवाद सफ्टवेयर रोजगारी भइरहेको छ र एक समय अनुवाद द्वारा जान्छ कि एकदम सही हुन जाँदैछ - विशेष गरी सामान्यतया साधारणतया प्रयोग र वाक्यांशको लागि। एक क्षणमा, यो सही छैन तर हाम्रो अनुवाद सफ्टवेयर उनका लागि उपयोगी छ जुन वाक्यलाई फ्रेन्च गर्न मद्दत गर्दछ र वाक्य वा वाक्यांशले सन्देशलाई कुन कुरामा सुचारु पार्छ भन्ने बारे सामान्य विचार प्राप्त गर्दछ।', 'ne', 'en', i);
         }
 

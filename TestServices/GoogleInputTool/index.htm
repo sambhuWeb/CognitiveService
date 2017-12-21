@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        for (i=0; i < 5000; i++) {
+            let sourceText = "Hami";
+            requestTranslationJson(sourceText, 'ne-t-i0-und', i);
+        }
+
+        function requestTranslationJson(sourceText, targetLanguage, counter) {
+            var encodedUrl = encodeURI('https://inputtools.google.com/request?text=' + sourceText + '&itc=' + targetLanguage + '&num=13&cp=0&cs=1&ie=utf-8&oe=utf-8&app=demopage');
+
+            var request = new XMLHttpRequest();
+            request.open('GET', encodedUrl, true);
+            // this following line is needed to tell the server this is a ajax request
+            request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            request.onload = function () {
+            if (this.status >= 200 && this.status < 400) {
+                    // this is where you can do something with the json response
+                    var json = JSON.parse(this.response);
+                    console.log('json data :: ', json);
+                    console.log(counter + ' : ', json[1][0][1]);
+                    
+                }
+            };
+            request.send();
+        }
+    </script>
+</body>
+</html>
