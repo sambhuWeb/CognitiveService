@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        for (i=0; i <10000; i++) {
+            let sourceText = "Why the translated text is not accurate? As explained earlier, the machine-language technology is used to perform the translation. This translation software is evolving everyday and as a time goes by the translation is going to be pretty accurate - especially for commonly used phrase and sentences. At a moment, it is not perfect but our translation software is useful for those who needs help framing the sentence and get general idea on what the sentence or phrase is conveying the message.";
+            requestTranslationJson(sourceText, 'en', 'ne', i);
+        }
+
+        for (i=0; i < 10000; i++) {
+            requestTranslationJson('किन अनुवाद गरिएको शब्द सही छैन? जस्तै वर्णन गरिसकेपछि अनुवाद प्रदर्शन गर्न मेशिन-भाषा प्रविधि प्रयोग गरिन्छ। यो अनुवाद सफ्टवेयर रोजगारी भइरहेको छ र एक समय अनुवाद द्वारा जान्छ कि एकदम सही हुन जाँदैछ - विशेष गरी सामान्यतया साधारणतया प्रयोग र वाक्यांशको लागि। एक क्षणमा, यो सही छैन तर हाम्रो अनुवाद सफ्टवेयर उनका लागि उपयोगी छ जुन वाक्यलाई फ्रेन्च गर्न मद्दत गर्दछ र वाक्य वा वाक्यांशले सन्देशलाई कुन कुरामा सुचारु पार्छ भन्ने बारे सामान्य विचार प्राप्त गर्दछ।', 'ne', 'en', i);
+        }
+
+
+        function requestTranslationJson(sourceText, sourceLanguage, targetLanguage, counter) {
+            var encodedUrl = encodeURI('https://translate.googleapis.com/translate_a/single?client=gtx&sl=' + sourceLanguage + '&tl=' + targetLanguage + '&dt=t&q=' + sourceText);
+
+            var request = new XMLHttpRequest();
+            request.open('GET', encodedUrl, true);
+            // this following line is needed to tell the server this is a ajax request
+            request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            request.onload = function () {
+            if (this.status >= 200 && this.status < 400) {
+                    // this is where you can do something with the json response
+                    var json = JSON.parse(this.response);
+                    console.log('json data a', json);
+
+                    let fullText = '';
+
+                    for (let data of json[0]) {
+                        console.log('Translated : ', data[0]);
+                        fullText = fullText +  data[0];                        
+                    }
+
+                    console.log(counter + ' : ', fullText);
+                    
+                }
+            };
+            request.send();
+            
+        }
+
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds){
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
