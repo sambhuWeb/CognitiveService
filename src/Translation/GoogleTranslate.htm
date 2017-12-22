@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/GoogleTranslation.js"></script>
+    <script>        
+        let sourceText = 'How are you';
+        let sourceLanguage = 'en';
+        let targetLanguage = 'ne';
+        
+        let googleTranslation = new GoogleTranslation(sourceText, sourceLanguage, targetLanguage);
+        googleTranslation.getTranslation(
+            function(responseText) {
+                console.log('Call back at html', responseText);
+            }
+        );        
+    </script>
+</body>
+</html>
