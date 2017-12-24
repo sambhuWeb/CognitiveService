@@ -59,7 +59,7 @@ describe('GoogleTranslation', () => {
         expect(result).to.equal('i fail');
     
         
-        //or 
+        //OR
 
         // googleTranslation
         //     .promiseTranslation()
