@@ -15,5 +15,23 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha src --recursive"
-  }
+  },
+  "name": "cognitive-service",
+  "description": "Language Translation and Typing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sambhuWeb/CognitiveService.git"
+  },
+  "keywords": [
+    "Cognitive",
+    "Service"
+  ],
+  "author": "sambhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sambhuWeb/CognitiveService/issues"
+  },
+  "homepage": "https://github.com/sambhuWeb/CognitiveService#readme"
 }
