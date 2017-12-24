@@ -14,11 +14,19 @@
         let targetLanguage = 'ne';
         
         let googleTranslation = new GoogleTranslation(sourceText, sourceLanguage, targetLanguage);
-        googleTranslation.getTranslation(
-            function(responseText) {
-                console.log('Call back at html', responseText);
-            }
-        );        
+        // 1. By using callbak
+        // googleTranslation.getTranslation(
+        //     function(responseText) {
+        //         console.log('Call back at html', responseText);
+        //     }
+        // );
+
+        //2. Using Promise:
+        googleTranslation
+            .promiseTranslation()
+            .then(function(response) {
+              console.log('Translated Text', response);              
+            });
     </script>
 </body>
 </html>

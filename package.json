@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "sinon": "^4.1.3",
-    "xhr-mocklet": "^1.2.1"
+    "xhr-mocklet": "^1.2.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha src --recursive"

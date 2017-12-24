@@ -25,51 +25,27 @@ describe('GoogleTranslation', () => {
     
 
     let googleTranslation;
-    // setUp: function () {
-    //     this.xhr = sinon.useFakeXMLHttpRequest();
-    //     var requests = this.requests = [];
-    
-    //     this.xhr.onCreate = function (xhr) {
-    //         requests.push(xhr);
-    //     };
-    // },
-    
-    // tearDown: function () {
-    //     this.xhr.restore();
-    // },
 
+    let xhr;
+    let requests;
 
-     beforeEach(function() {
-        this.xhr = sinon.useFakeXMLHttpRequest();
-        let requests = this.requests = [];
-    
-        this.xhr.onCreate = function (xhr) {
-            this.requests.push(xhr);
-        }.bind(this);
-      });
-     
-      afterEach(function() {
-        this.xhr.restore();
-      });
-    // const mock = require('xhr-mocklet');
-    // mock.setup();
+    //https://github.com/zandaqo/compago-ajax/blob/1.0.1/tests/unit.test.js#L38
+    beforeEach(() => {
+      xhr = sinon.useFakeXMLHttpRequest();
+      global.XMLHttpRequest = xhr;      
+      requests = [];
+      /* eslint no-shadow: 1*/
+      xhr.onCreate = (xhr) => {
+        requests.push(xhr);
+      };
+    });
 
-    // let xhr, requests;
-    
-    // beforeEach(function() {
-    //     this.xhr = sinon.useFakeXMLHttpRequest();
-     
-    //     this.requests = [];
-    //     this.xhr.onCreate = function(xhr) {
-    //       this.requests.push(xhr);
-    //     }.bind(this);
-    //   });
-     
-    //   afterEach(function() {
-    //     this.xhr.restore();
-    //   });
+    afterEach(() => {
+      xhr.restore();
+    });
 
-    it('it should translate "How are you" from English to Nepali', () => {
+    it('it should translate "How are you" from English to Nepali', async () => { // Don't forget 'done' here...
+
         //Given
         let sourceText = 'How are you';
         let sourceLanguage = 'en';
@@ -77,12 +53,50 @@ describe('GoogleTranslation', () => {
 
         //When
         googleTranslation = new GoogleTranslation(sourceText, sourceLanguage, targetLanguage);
-        let actualTargetText = googleTranslation.getTranslation(function() {
-            expect(actualTargetText).to.equal('तिमीलाई कस्तो छ');
-        });
 
-        //Then
-        // 
-    });    
+
+        const result = await googleTranslation.promiseTranslation();
+        expect(result).to.equal('i fail');
+    
+        
+        //or 
+
+        // googleTranslation
+        //     .promiseTranslation()
+        //     .then((result) => {
+        //         console.log('Result : ', result);
+        //         expect(result).to.equal('i fail');
+        //         done();
+        //     }).catch(done);
+    });
+
+    //https://wietse.loves.engineering/testing-promises-with-mocha-90df8b7d2e35
+    // it('it should translate "How are you" from English to Nepali', async () => {
+    //     //Given
+    //     let sourceText = 'How are you';
+    //     let sourceLanguage = 'en';
+    //     let targetLanguage = 'ne';
+
+    //     //When
+    //     googleTranslation = new GoogleTranslation(sourceText, sourceLanguage, targetLanguage);
+    //     const translatedText = await googleTranslation.promiseTranslation();
+    //     expect(translatedText).to.equal('तिमीलाई कस्तो छ');
+
+    //      // return googleTranslation
+    //      //    .promiseTranslation()
+    //      //    .then((result) => {
+    //      //        console.log(result);
+    //      //        expect(result).to.equal('1llll तिमीलाई कस्तो छ');
+                
+    //      //    });
+
+
+    //     // let actualTargetText = googleTranslation.getTranslation(function() {
+    //     //     expect(actualTargetText).to.equal('तिमीलाई कस्तो छ');
+    //     // });
+
+    //     //Then
+    //     // 
+    // });    
 
 });
